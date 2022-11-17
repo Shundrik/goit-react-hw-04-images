@@ -5,7 +5,7 @@ import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
 import { useState } from 'react';
 import { useEffect } from 'react';
-// import { useRef } from 'react';
+
 
 export const App = () => {
   const [images, setImages] = useState([]);
@@ -18,30 +18,12 @@ export const App = () => {
     setQuery(query);
     setPage(1);
   };
-  // const siFirstRender = useRef(true)
+ 
 
   const handleLoadMore = () => {
     console.log(page);
     setPage(prevState => prevState + 1);
   };
-
-  // useEffect(() => {
-  //   if (setQuery(query) !== query || setPage(page) !== page) {
-  //     setIsLoading(true);
-  //     fethImages(query, page)
-  //     .then(data => {
-  //       setImages(prev => page === 1 ? data.hits : [...prev, ...data.hits]);
-  //       setTotalHits(prev =>
-  //           page === 1
-  //             ? data.totalHits - data.hits.length
-  //             : prev - images.length
-  //         );
-  //       })
-  //       .finally(() => {
-  //         setIsLoading(false);
-  //       });
-  //   }
-  // }, [images.length, page, query]);
 
   useEffect(() => {
     setIsLoading(true);
