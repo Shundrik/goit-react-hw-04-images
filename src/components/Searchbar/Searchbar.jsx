@@ -1,47 +1,40 @@
-import React from 'react';
-import "../../Style/styles.css"
+import { useState } from 'react';
+import '../../Style/styles.css';
 // import styled from 'styled-components';
 // const Header = styled
 
+export const Searchbar = ({onSubmit}) => {
+  const [query, setQuery] = useState('');
 
-export class Searchbar extends React.Component {
-  state = {
-    query:'',
-    
-
+  const handleChange = ({ target: { value: query } }) => {
+    setQuery(query );
   };
- 
- handleChange = ({target:{value:query}})=>{
-    this.setState({query})
- }
 
-hendleSubmitForm = e =>{
+  const hendleSubmitForm = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.query)
-}
+    onSubmit(query);
+  };
 
+  return (
+    <header className="Searchbar">
+      <form
+        className="SearchForm"
+        onChange={handleChange}
+        onSubmit={hendleSubmitForm}
+      >
+        <button type="submit" className="SearchForm-button">
+          <span className="button-label">Search</span>
+        </button>
 
-  render() {
-    const {query} = this.state
-    return (
-      <header className="Searchbar">
-        <form className="SearchForm"
-        onChange={this.handleChange}
-        onSubmit={this.hendleSubmitForm}>
-          <button type="submit" className="SearchForm-button">
-            <span className="button-label">Search</span>
-          </button>
-
-          <input
-            className="SearchForm-input"
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-            value={query}
-          />
-        </form>
-      </header>
-    );
-  }
-}
+        <input
+          className="SearchForm-input"
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+          value={query}
+        />
+      </form>
+    </header>
+  );
+};
